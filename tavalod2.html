@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="Css/tavalodcss.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Handlee&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="intro" id="intro">
+      <div class="click-game-container">
+        <button id="funny-button">Tap the Fun! 🐥</button>
+        <p id="click-counter">Clicks: 0 / 10</p>
+      </div>
+    </div>
+
+    <div class="main hidden" id="main">
+        <div class="balloon-container" id="balloons">
+            </div>
+        <canvas id="confetti-canvas"></canvas>
+
+        <div class="card">
+            <h1>🎂  تولدت مبارک ! 🎂</h1>
+            <div class="messages" id="messages">
+                </div>
+            <button id="replay"> 🤔بزن ببین چی میشه </button>
+        </div>
+
+        <section class="memories">
+            <h2 style="position: relative; left: 470px;">لبخند یادت نره 😊</h2>
+            <ul>
+                <li style="position: relative; left: 100px;">به سلامتی تو و جشن گرفتن امروزت و تمام لحظه‌های فوق‌العاده‌ای که در راهن-</li>
+                <li style="position: relative; left: 190px;">امیدوارم روز خاصت پر از شادی، خنده و کلی چیزهای قشنگ باشه-</li>
+                <li style="position: relative; left: 65px;">برات سالی آرزو می‌کنم که حتی از اون چیزی که تصور می‌کنی هم شگفت‌انگیزتر باشه-</li>
+                <li style="position: relative; left: 250px;">تو کلی انرژی مثبت به دنیا می‌دی – همین‌جوری بدرخش-</li>
+                <li>امیدوارم تولدت فقط شروع یه سال پر از سورپرایزهای خوشحال‌کننده و ماجراجویی‌های تازه باشه-</li>
+            </ul>
+        </section>
+
+        <section class="fun-facts">
+            <h2 style="position: relative; left: 470px;"> :چک لیست تولد</h2>
+            <ul style="position: relative; left: 300px; font-family: 'Segoe UI', sans-serif;">
+                <li style="position: relative; left: 180px;"> ✅ لبخند؟ 🎉😁</li>
+                <li style="position: relative; left: 208px;">✅ کیک؟ 🎂</li>
+                <li style="position: relative; left: 130px;">✅ خوراکی خوشمزه؟ 🧁</li>
+                <li style="position: relative; left: 87px;"> ✅دوستایی که برات مهمن؟ ❤️</li>
+                <li> ✅✅✅خاطرات فوق‌العاده که در راهن؟ 🎁</li>
+            </ul>
+        </section>
+
+        <div class="theme-section">
+            <h2>🎨 هرچی عشقت میکشه مشتی</h2>
+            <select id="theme-selector">
+                <option value="default">Sweet & Sparkly</option>
+                <option value="funny">Funny & Bright</option>
+                <option value="calm">Calm & Serene</option>
+            </select>
+        </div>
+
+        <div class="picture-box-container">
+            <div class="picture-box">
+                <img src="Images/nikan.jpg" alt="">
+            </div>
+        </div>
+
+    </div>
+
+    <audio id="music" loop>
+        <source src="Music/Happy%20Birthday.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="Js/Tavalod1.js"></script>
+</body>
+</html>
