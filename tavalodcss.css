@@ -1,0 +1,575 @@
+/* Base Styles - Apply to all screen sizes first */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    color: #333;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* Keyframes for the dynamic gradient background movement */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Theme Background Classes for Body --- */
+body.theme-default {
+    background: linear-gradient(270deg, #ffdde1, #fbc2eb, #fad0c4, #a18cd1);
+    background-size: 800% 800%;
+    animation: gradientMove 15s ease infinite;
+}
+
+body.theme-funny {
+    background: linear-gradient(to right, #ffe259, #ffa751);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+}
+
+body.theme-calm {
+    background: linear-gradient(to right, #c2e9fb, #a1c4fd);
+    background-size: 500% 500%;
+    animation: gradientMove 20s ease infinite;
+}
+
+/* --- Intro Screen Styling --- */
+.intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffdde1;
+    color: #333;
+    font-size: 2rem; /* Using rem for better scaling */
+    opacity: 1;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+    overflow: hidden;
+    text-align: center; /* Center content horizontally */
+}
+
+.click-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3vw; /* Responsive padding */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    animation: introGameFadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+    position: relative;
+    overflow: hidden;
+    max-width: 90vw; /* Ensure it doesn't get too wide on small screens */
+    width: clamp(280px, 60vw, 400px); /* Min, ideal, max width */
+}
+
+#funny-button {
+    width: clamp(100px, 30vw, 150px); /* Responsive width */
+    height: clamp(100px, 30vw, 150px); /* Responsive height */
+    border-radius: 50%;
+    background-color: #ff69b4;
+    color: white;
+    font-size: clamp(1.2rem, 4vw, 1.8rem); /* Responsive font size */
+    font-weight: bold;
+    border: 5px solid #ff1493;
+    cursor: pointer;
+    transition: transform 0.1s ease-out, background-color 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+#funny-button:active {
+    transform: scale(0.9);
+    background-color: #ff1493;
+}
+
+#click-counter {
+    font-size: clamp(1rem, 3vw, 1.5rem); /* Responsive font size */
+    color: #333;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+}
+
+@keyframes introGameFadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* --- Cute Heart Sparkles --- */
+.heart-sparkle {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: heartPopAndFade 1s forwards;
+    pointer-events: none;
+    z-index: 100;
+    text-shadow: 0 0 5px rgba(255,255,255,0.7);
+    transform: translate(-50%, -50%);
+}
+
+@keyframes heartPopAndFade {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    20% { transform: translate(var(--end-x-offset), var(--end-y-offset)) scale(1.2); opacity: 1; }
+    100% { transform: translate(var(--end-x-offset), var(--end-y-offset)) scale(0.5); opacity: 0; }
+}
+
+/* --- Main Content Styling --- */
+.main.hidden {
+    display: none;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%; /* Make card responsive */
+    margin: 2rem auto;
+    animation: fadeIn 2s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.card h1 {
+    font-size: clamp(1.8rem, 6vw, 2.8rem); /* Responsive font size */
+    margin-bottom: 1rem;
+}
+
+.messages p {
+    font-size: clamp(1rem, 3.5vw, 1.3rem); /* Responsive font size */
+    margin-bottom: 1.5rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ff69b4;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+button:hover {
+    background-color: #ff1493;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: skewX(-20deg);
+    transition: all 0.7s ease;
+    pointer-events: none;
+}
+
+button:hover::before {
+    left: 125%;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.balloon-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.balloon {
+    position: absolute;
+    top: -100px;
+    width: 40px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+@keyframes fallBalloon {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(calc(100vh + 100px)) rotate(360deg); opacity: 0; }
+}
+
+/* Sections (Memories and Fun Facts) */
+section {
+    background: rgba(255,255,255,0.8);
+    margin: 2rem auto;
+    padding: clamp(1rem, 4vw, 1.5rem) clamp(1rem, 5vw, 2rem); /* Responsive padding */
+    max-width: 700px;
+    width: 90%; /* Make sections responsive */
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+    text-align: center; /* Center text within sections */
+}
+
+section h2 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.5rem, 5vw, 2rem); /* Responsive font size */
+    /* Removed fixed left position */
+}
+
+section ul {
+    list-style: none;
+    padding-left: 0; /* Remove default padding for lists */
+}
+
+section li {
+    margin-bottom: 0.7rem;
+    font-size: clamp(0.9rem, 2.8vw, 1.1rem); /* Responsive font size */
+    /* Removed fixed left position */
+}
+
+/* Theme Selector Section (div) */
+.theme-section {
+    background: transparent;
+    text-align: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+    padding: 1rem 0; /* Add some padding */
+}
+
+/* --- Theme Selector Dropdown Styling --- */
+#theme-selector {
+    margin-top: 10px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border: 2px solid #ff69b4;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.9%204.9-4.8%2011.5-2.7%2017.2l128.8%20224.7c1.7%204.6%205.4%208.1%2010%2010.5%204.6%202.4%209.7%202.7%2014.2.9%209.6-3.4%2015.6-12.7%2015.6-23.7V85.9z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+}
+
+#theme-selector:hover {
+    background-color: rgba(255, 255, 255, 1);
+    border-color: #ff1493;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+#theme-selector option {
+    background-color: white;
+    color: #333;
+}
+
+/* --- Theme-Specific Box/Section Backgrounds --- */
+body.theme-funny .card,
+body.theme-funny section {
+    background: rgba(255, 245, 210, 0.95);
+}
+body.theme-funny .theme-section {
+    background: transparent;
+}
+body.theme-funny .picture-box {
+    border-color: #ffa751;
+    background-color: rgba(255, 245, 210, 0.7);
+}
+
+body.theme-calm .card,
+body.theme-calm section {
+    background: rgba(220, 240, 255, 0.95);
+}
+body.theme-calm .theme-section {
+    background: transparent;
+}
+body.theme-calm .picture-box {
+    border-color: #a1c4fd;
+    background-color: rgba(220, 240, 255, 0.7);
+}
+
+/* --- NEW: Container for Picture Boxes --- */
+.picture-box-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto 4rem auto;
+    max-width: 400px;
+    width: 90%; /* Ensure it's responsive */
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Individual Picture Box Styling (Adjusted for bigger size) --- */
+.picture-box {
+    width: clamp(200px, 60vw, 300px); /* Responsive width with min/max */
+    height: clamp(200px, 60vw, 300px); /* Responsive height with min/max */
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 5px solid #ff69b4;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    animation: zoomPulse 3s infinite alternate ease-in-out;
+}
+
+.picture-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes zoomPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
+}
+
+/* -------------------------------------- */
+/* Media Queries for Different Screen Sizes */
+/* -------------------------------------- */
+
+/* Small devices (phones, 600px and down) */
+@media (max-width: 600px) {
+    .intro {
+        font-size: 1.5rem;
+    }
+
+    .click-game-container {
+        padding: 5vw;
+        border-radius: 15px;
+    }
+
+    #funny-button {
+        font-size: 1.5rem;
+    }
+
+    #click-counter {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        border-radius: 15px;
+    }
+
+    .card h1 {
+        font-size: 2rem;
+    }
+
+    .messages p {
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    section {
+        margin: 1.5rem auto;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+    }
+
+    section h2 {
+        font-size: 1.3rem;
+    }
+
+    section li {
+        font-size: 0.85rem;
+    }
+
+    #theme-selector {
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
+    }
+
+    .picture-box {
+        width: clamp(180px, 70vw, 250px);
+        height: clamp(180px, 70vw, 250px);
+        border-width: 3px;
+    }
+}
+
+/* Medium devices (tablets, 601px to 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+    .intro {
+        font-size: 1.8rem;
+    }
+
+    .click-game-container {
+        padding: 4vw;
+    }
+
+    #funny-button {
+        font-size: 1.6rem;
+    }
+
+    #click-counter {
+        font-size: 1.3rem;
+    }
+
+    .card {
+        padding: 1.8rem;
+    }
+
+    .card h1 {
+        font-size: 2.4rem;
+    }
+
+    .messages p {
+        font-size: 1.1rem;
+    }
+
+    section {
+        padding: 1.2rem 1.8rem;
+    }
+
+    section h2 {
+        font-size: 1.7rem;
+    }
+
+    section li {
+        font-size: 0.95rem;
+    }
+
+    #theme-selector {
+        font-size: 1.05rem;
+    }
+}
+
+/* Large devices (laptops/desktops, 901px and up) - Current styles are largely for this already */
+@media (min-width: 901px) {
+    .card {
+        max-width: 650px; /* Can be slightly larger on wider screens */
+    }
+
+    section {
+        max-width: 750px; /* Can be slightly larger on wider screens */
+    }
+
+    .picture-box-container {
+        max-width: 450px;
+    }
+
+    .picture-box {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+/* Landscape orientation for smaller devices */
+@media screen and (max-height: 500px) and (max-width: 800px) and (orientation: landscape) {
+    .intro {
+        font-size: 1.2rem;
+    }
+
+    .click-game-container {
+        padding: 20px;
+        max-width: 80vw;
+        width: auto; /* Allow content to dictate width */
+    }
+
+    #funny-button {
+        width: 100px;
+        height: 100px;
+        font-size: 1.2rem;
+    }
+
+    .main {
+        padding: 1rem; /* Reduce overall padding */
+    }
+
+    .card {
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    .card h1 {
+        font-size: 1.6rem;
+    }
+
+    .messages p {
+        font-size: 0.9rem;
+    }
+
+    section {
+        margin: 1rem auto;
+        padding: 0.8rem 1rem;
+    }
+
+    section h2 {
+        font-size: 1.2rem;
+    }
+
+    section li {
+        font-size: 0.8rem;
+    }
+
+    .picture-box {
+        width: 150px;
+        height: 150px;
+    }
+}
